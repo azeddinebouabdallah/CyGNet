@@ -41,7 +41,10 @@ class link_prediction(nn.Module):
         init_tim = torch.Tensor(self.num_times, self.h_dim)
         for i in range(self.num_times):
             init_tim[i] = torch.Tensor(self.tim_init_embeds.cpu().detach().numpy().reshape(self.h_dim)) * (i + 1)
-        init_tim = init_tim.to('cuda')
+        if self.use_cuda:
+            init_tim = init_tim.to('cuda')
+        else:
+            init_tim = init_tim.to('cpu')
         T = init_tim[T_idx]
         return T
     

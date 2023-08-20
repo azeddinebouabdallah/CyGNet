@@ -33,6 +33,8 @@ def mkdirs(path):
 use_cuda = args.gpu >= 0 and torch.cuda.is_available()
 device = torch.device("cuda" if use_cuda else "cpu")
 
+print(f"Device picked ----> {device}")
+
 if args.dataset == 'ICEWS14':
 	train_data, train_times = load_quadruples('./data/{}'.format(args.dataset), 'train.txt')
 	test_data, test_times = load_quadruples('./data/{}'.format(args.dataset), 'test.txt')
